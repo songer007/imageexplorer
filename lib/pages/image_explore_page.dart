@@ -37,7 +37,21 @@ class _ImageExplorerPageState extends State<ImageExplorerPage> {
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
-              child: Image.network(pokemon[index]),
+              height: MediaQuery.of(context).size.height / 3,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.black,
+                image: DecorationImage(
+                  image: NetworkImage(
+                    pokemon[index],
+                  ),
+                  fit: BoxFit.fill,
+                ),
+              ),
+              //child: Image.network(
+              //pokemon[index],
+              // fit: BoxFit.cover,
+              //),
             ),
             Divider(),
             Row(
