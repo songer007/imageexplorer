@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:imagesexplorer/models/pokemon_model.dart';
 
 class ImageExplorerPage extends StatefulWidget {
   @override
@@ -8,19 +9,50 @@ class ImageExplorerPage extends StatefulWidget {
 }
 
 class _ImageExplorerPageState extends State<ImageExplorerPage> {
-  int index = 0;
-  List<String> pokemon = [
-    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/289.png",
-    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/286.png",
-    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/285.png",
-    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/284.png",
-    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/283.png",
-    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/004.png",
-    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png",
-    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/017.png",
-    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/007.png",
-    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/001.png"
+  int index = Random().nextInt(10);
+  List<PokemonModel> pokemonList = [
+    PokemonModel(
+        name: "Slaking",
+        url:
+            "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/289.png"),
+    PokemonModel(
+        name: "Breloom",
+        url:
+            "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/286.png"),
+    PokemonModel(
+        name: "Shroomish",
+        url:
+            "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/285.png"),
+    PokemonModel(
+        name: "Masquerain",
+        url:
+            "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/284.png"),
+    PokemonModel(
+        name: "Surskit",
+        url:
+            "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/283.png"),
+    PokemonModel(
+        name: "Charmander",
+        url:
+            "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/004.png"),
+    PokemonModel(
+        name: "Pikachu",
+        url:
+            "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png"),
+    PokemonModel(
+        name: "Pidgeotto",
+        url:
+            "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/017.png"),
+    PokemonModel(
+        name: "Squirtle",
+        url:
+            "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/007.png"),
+    PokemonModel(
+        name: "Bulbasaur",
+        url:
+            "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/001.png")
   ];
+  String PokeName = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +75,7 @@ class _ImageExplorerPageState extends State<ImageExplorerPage> {
                 color: Colors.black,
                 image: DecorationImage(
                   image: NetworkImage(
-                    pokemon[index],
+                    pokemonList[index].url,
                   ),
                   fit: BoxFit.fill,
                 ),
@@ -54,16 +86,28 @@ class _ImageExplorerPageState extends State<ImageExplorerPage> {
               //),
             ),
             Divider(),
+            Text(
+              PokeName,
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Divider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    PokeName = pokemonList[index].name;
+                    setState(() {});
+                  },
                   child: Text("Mostrar SuperHeroe"),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     index = Random().nextInt(10);
+                    PokeName = "";
                     setState(() {});
                   },
                   child: Text("Siguiente"),
