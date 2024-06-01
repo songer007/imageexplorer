@@ -1,6 +1,26 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
-class ImageExplorerPage extends StatelessWidget {
+class ImageExplorerPage extends StatefulWidget {
+  @override
+  State<ImageExplorerPage> createState() => _ImageExplorerPageState();
+}
+
+class _ImageExplorerPageState extends State<ImageExplorerPage> {
+  int index = 0;
+  List<String> pokemon = [
+    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/289.png",
+    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/286.png",
+    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/285.png",
+    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/284.png",
+    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/283.png",
+    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/004.png",
+    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png",
+    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/017.png",
+    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/007.png",
+    "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/001.png"
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,6 +30,34 @@ class ImageExplorerPage extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.blue,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Column(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Image.network(pokemon[index]),
+            ),
+            Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text("Mostrar SuperHeroe"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    index = Random().nextInt(10);
+                    setState(() {});
+                  },
+                  child: Text("Siguiente"),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
